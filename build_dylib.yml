@@ -1,0 +1,17 @@
+name: Build Dylib
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Build
+      run: |
+        clang++ -std=c++17 -fPIC -shared -I./include -I./src -framework Foundation -framework UIKit -framework Metal -framework MetalKit src/main.cpp src/ui.mm src/luau_bridge.cpp -o RobloxExecutor.dylib
+    - name: Upload
+      uses: actions/upload-artifact@v4
+      with:
+        name: Roblox-Executor-Dylib
+        path: RobloxExecutor.dylib
