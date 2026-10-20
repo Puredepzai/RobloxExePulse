@@ -13,9 +13,7 @@ jobs:
 
     - name: Build Dylib
       run: |
-        clang++ -std=c++17 -fPIC -shared -I./include -I./src \
-        -framework Foundation -framework UIKit -framework Metal -framework MetalKit \
-        src/main.cpp src/ui.mm src/luau_bridge.cpp -o RobloxExecutor.dylib
+        clang++ -std=c++17 -fPIC -shared -I./include -I./src -framework Foundation -framework UIKit -framework Metal -framework MetalKit src/main.cpp src/ui.mm src/luau_bridge.cpp -o RobloxExecutor.dylib
 
     - name: Upload Dylib Artifact
       uses: actions/upload-artifact@v4
